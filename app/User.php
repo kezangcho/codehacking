@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','role_id','is_active',
+        'name', 'email', 'password','role_id','is_active','photo_id','delete_user'
     ];
 
     /**
@@ -23,8 +23,27 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
+   
+    // relation b/w user and role
     public function role(){
         return $this->belongsTo('App\Role');
     }
+
+    // relation b/w user and photo
+    public function photo(){
+        return $this->belongsTo('App\Photo');
+    }
+
+    public function isAdmin(){
+        if($this->role->name == "administrator"){
+            return true;
+        }
+        return false;
+    }
+
+    public function posts(){
+        return $this->hasMany('App\Post');
+    }
+
+
 }

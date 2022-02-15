@@ -1,8 +1,10 @@
 @extends('layouts.admin')
 
 @section('content')
+
+
 <h3> Create User</h3>
-<form method="post" action="{{route('admin.users.store')}}">
+<form method="post" action="{{route('admin.users.store')}}" enctype="multipart/form-data">
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
  <div class="form-group">
      <label for="name">Name</label>
@@ -33,8 +35,8 @@
     </select>    
  </div> 
  <div class="form-group">
-     <label for="file">Title:</label>
-     <input type="file" name="file">
+     <label for="photo_id">Title:</label>
+     <input type="file" name="photo_id" id="photo_id">
  </div> 
  <div class="form-group">
      <button type="submit" class="btn btn-primary">Create User</button>
